@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\ikan;
+use Auth;
 
 
 use Carbon\Carbon;
@@ -53,10 +54,11 @@ class controllerAgen extends Controller
 
 	}
 
-	public function view(Request $request)
+	public function view()
 	{
-
-		$tampil= ikan::all();		
+		$id=Auth::user()->id;;
+		$agen=ikan::
+		$tampil= ikan::findOrFail('idAgen',$id);		
 		return view('daftarPenawaran',compact('tampil'));
 	}
 
@@ -67,6 +69,7 @@ class controllerAgen extends Controller
 		
 		$insert = ([
 			'tanggalPenawaran' => $request->tanggalPenawaran,
+			'idAgen' => $request->agen,
 			'opsiIkan' => $request->opsiIkan,
 			'jenisIkan' => $request->jenisIkan,
 			'jumlahIkan' => $request->jumlahIkan,

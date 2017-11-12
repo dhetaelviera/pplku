@@ -15,7 +15,7 @@ class ikan extends Model
 
     protected $table = 'penawaranIkan';
     protected $primaryKey = 'idPenawaran';
-    protected $fillable = ['idPenawaran','tanggalPenawaran', 'opsiIkan','jenisIkan','jumlahIkan','hargaIkan','status'];
+    protected $fillable = ['idPenawaran','tanggalPenawaran','idAgen', 'opsiIkan','jenisIkan','jumlahIkan','hargaIkan','status'];
  
     /**
      * The attributes that should be hidden for arrays.

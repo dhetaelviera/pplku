@@ -30,7 +30,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Data Penawaran Ikan</h3>
-									  <span class="text-grey">oleh agen penyedia ikan</span>
+									  <span class="text-grey">oleh {{ Auth::user()->name }}</span>
 								</div>
 								<div class="panel-body">
 									<form action="/insertPenawaran" method="POST" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
@@ -38,6 +38,12 @@
 											<label class="col-sm-3 control-label">Tanggal Penawaran </label>
 											<div class="col-sm-6">
 												<input type="date" placeholder="YYYY-MM-DD" class="form-control" name="tanggalPenawaran" required>
+											</div>
+											</div>
+
+											<div class="form-group"> 
+											<div class="col-sm-6">
+												<input type="hidden"  class="form-control" name="agen"  value="{{ Auth::user()->id }}" required>
 											</div>
 											</div>
 
