@@ -57,12 +57,7 @@
 
                             <div class="col-md-6">
                                  <input type="text" class="form-control" name="kecamatan" value="<?php echo e(old('kecamatan')); ?>">
-
-                               <?php if($errors->has('kecamatan')): ?>
-                                 <span class="help-block">
-                                     <strong><?php echo e($errors->first('kecamatan')); ?></strong>
-                                </span>
-                                <?php endif; ?>
+ 
                             </div>
                         </div> 
 
@@ -71,12 +66,7 @@
 
                             <div class="col-md-6">
                                  <input type="text" class="form-control" name="kabupaten" value="<?php echo e(old('kabupaten')); ?>">
-
-                               <?php if($errors->has('kabupaten')): ?>
-                                 <span class="help-block">
-                                     <strong><?php echo e($errors->first('kabupaten')); ?></strong>
-                                </span>
-                                <?php endif; ?>
+ 
                             </div>
                         </div>  
 
@@ -85,12 +75,7 @@
 
                             <div class="col-md-6">
                                  <input type="text" class="form-control" name="provinsi" value="<?php echo e(old('provinsi')); ?>">
-
-                               <?php if($errors->has('provinsi')): ?>
-                                 <span class="help-block">
-                                     <strong><?php echo e($errors->first('provinsi')); ?></strong>
-                                </span>
-                                <?php endif; ?>
+ 
                             </div>
                         </div>
 
@@ -108,7 +93,19 @@
                             </div>
                         </div> 
 
+                        <div class="form-group<?php echo e($errors->has('noTelepon') ? ' has-error' : ''); ?>">
+                            <label class="col-md-4 control-label">no. Rekening</label>
 
+                            <div class="col-md-6">
+                                 <input type="text" class="form-control" name="rekening" value="<?php echo e(old('rekening')); ?>">
+
+                               <?php if($errors->has('rekening')): ?>
+                                 <span class="help-block">
+                                     <strong><?php echo e($errors->first('rekening')); ?></strong>
+                                </span>
+                                <?php endif; ?>
+                            </div>
+                        </div> 
 
                         <div class="form-group<?php echo e($errors->has('username') ? ' has-error' : ''); ?>">
                             <label class="col-md-4 control-label">Username</label>

@@ -35,11 +35,13 @@
 					
 					<!-- <li><a href="<?php echo e(url('/profilAgen')); ?>"> <span>Ubah Profil</span></a></li>
 					 -->
+					<li><a href="<?php echo e(url('/profilAgen/'.Auth::user()->id)); ?>"> <span>Profil</span></a></li>
+
 					<li><a href="<?php echo e(url('/buatPenawaran')); ?>"> <span>Buat Penawaran Ikan</span></a></li>
 
-					<li><a href="<?php echo e(url('/daftarPenawaran')); ?>"><span>Daftar Penawaran </span></a></li>
+					<li><a href="<?php echo e(url('/daftarPenawaran/'.Auth::user()->id)); ?>"><span>Daftar Penawaran </span></a></li>
 					
-					<li><a href="<?php echo e(url('/notifikasiAgen')); ?>"><span>Notifikasi</span></a></li>
+					<li><a href="<?php echo e(url('/notifikasiAgen/'.Auth::user()->id)); ?>"><span>Notifikasi</span></a></li>
 					
 					<li><a href="<?php echo e(url('/welcome')); ?>"><span>Transaksi</span></a></li>
 					

@@ -9,21 +9,32 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+     
     protected $fillable = [
-        'name', 'email','alamat','kecamatan','kabupaten','provinsi','noTelepon','username', 'password','sebagai',
+        'name', 'email','alamat','kecamatan','kabupaten','provinsi','noTelepon','rekening','username', 'password','sebagai',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+ 
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function ikans() {
+
+    return  $this->hasMany('app\ikan');
+    }
+//ini buat pengusaha
+    public function transactions() {
+
+    return  $this->hasMany('App\transaksi');
+    }
+//ini buat agen
+    public function agens() {
+
+    return  $this->hasMany('App\transaksi');
+    }
+
+    public function lev() {
+        return $this-> belongsTo('App\level','sebagai');
+    }
+
 }

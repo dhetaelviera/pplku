@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request; 
 use App\ikan;
+use App\User;
+use App\transaksi;
 use Carbon\Carbon;
+use Auth;
+
+use Illuminate\Support\Facades\DB;
 /**
 * 
 */
@@ -22,22 +27,39 @@ class controllerPengusaha extends Controller
 	public function view(Request $request)
 	{
 
-		$tampil= ikan::paginate(7);
-		 
+		$tampil= ikan::where('status',1)->get();
+		
 		return view('daftarPenawaranPengusaha',compact('tampil'));
 	}
 
-	public function profil()
+	public function profil($id)
 	{
+		$prof= User::where('id',$id);
 		return view('profilPengusaha');
 
 	} 
+	public function updateProfil(Request $request, $id){ 
 
-	public function daftarPenawaran()
-	{
-		return view('daftarPenawaranPengusaha');
+		$prof=User::find($id);
 
+		$prof = ([
+			'name' =>   $request->name,
+			'email' =>   $request->email,
+			'alamat' =>   $request->alamat,
+			'kecamatan' =>   $request->kecamatan,
+			'kabupaten' =>   $request->kabupaten,
+			'provinsi' =>   $request->provinsi,
+			'noTelepon' =>   $request->noTelepon,
+			'rekening' =>   $request->rekening,
+			'username' =>   $request->username,
+			'password' =>  $request->password,
+			'sebagai' =>   $request->sebagai,
+			]);
+		$prof->save(); 
+
+		return redirect()->back();
 	}
+
 
 	public function keluar()
 	{
@@ -45,137 +67,123 @@ class controllerPengusaha extends Controller
 
 	}
 
-	public function notif()
+	public function notif($id)
 	{
-		return view('notifikasiPengusaha');
+		$tampils= transaksi::where('pengusaha',$id)->where('status',1)->get();    
+		return view('notifikasiPengusaha',compact('tampils'));
 
 	}  
 
 
-  public function beliPenawaran($id){
-    $beli= ikan::find($id);
-    if(!$beli)
-     dd('kosong');
+	public function beliPenawaran($id){
+		$beli= ikan::find($id);
+		return view('beliIkan',compact('beli'));
+	}
 
-    return view('beliIkan',compact('beli'));
-  }
+	public function updateBeli(Request $request, $id){ 
 
-  public function jadiBeli( Request $request, $id){
-    $beli= ikan::find($id);
-    $beli->statusPenawaran='2';
-    $beli->save();
+		$beli=ikan::find($id);
+		$beli->status= $request->statusPenawaran;
+		if ($beli->save()) {
+      # code...
+			$beli->save(); 
 
-    return view('dashboardPengusaha', $id);
-  }
+			$insert = ([
+				'tanggal' => $request->tanggal,
+				'penawaran' => $request->id,
+				'agen' => $request->agen1,
+				'pengusaha' => $request->user1,
+				'status' => $request->status,
 
-/*
-public function hitung(){
+				]);
+			transaksi::create($insert);
 
- //Setelah bobot terbuat select semua di tabel Matrik
- $bobot = array(0.2,0.4,0.4);
- $sql = mysqli_query("SELECT * FROM penawaranIkan");
- //Buat tabel untuk menampilkan hasil
- echo "<p> Matrik Awal </p>
- <table width=500 style='border:1px; #ddd; solid; border-collapse:collapse' border=1>
-  <tr>
-   <td>No</td>
-   <td>idPenawaran</td>
-   <td>C1</td>
-   <td>C2</td>
-   <td>C3</td>
-  </tr>
-  ";
-$no = 1;
- while ($dt = mysqli_fetch_array($sql)) {
-  $jumlah= ($dt['opsiIkan'])+($dt['hargaIkan'])+($dt['jumlahIkan']);
-  echo "<tr>
-   <td>$no</td>
-   <td>".getPenawaran($dt['idPenawaran'])."</td>
-   <td>$dt[opsiIkan]</td>
-   <td>$dt[hargaIkan]</td>
-   <td>$dt[jumlahIkan]</td> 
-  </tr>";
- $no++;
- }
- echo "</table>";
+			return redirect()->back();
+		}
 
-$crMax = mysqli_query("SELECT max(jumlahIkan) as maxK3 FROM penawaranIkan");
- $max = mysqli_fetch_array($crMax);
+	}
 
-$crMin = mysqli_query("SELECT min(opsiIkan) as minK1, min(hargaIkan) as minK2 FROM penawaranIkan");
- $min = mysqli_fetch_array($crMin);
+	public function lanjutkanTransaksi($id){
+		$edit= transaksi::find($id);
+		return view('lanjut',compact('edit'));
+	}
 
- //Hitung Normalisasi tiap Elemen
- $sql2 = mysqli_query("SELECT * FROM penawaranIkan");
- //Buat tabel untuk menampilkan hasil
- echo "<p>Matrik Normalisasi</p>
- <table width=500 style='border:1px; #ddd; solid; border-collapse:collapse' border=1>
-  <tr>
-   <td>No</td>
-   <td>Nama</td>
-   <td>C1</td>
-   <td>C2</td>
-   <td>C3</td>
-  </tr>
-  ";
- $no = 1;
- while ($dt2 = mysqli_fetch_array($sql2)) {
-  echo "<tr>
-   <td>$no</td>
-   <td>".getPenawaran($dt2['idPenawaran'])."</td>
-   <td>".round($dt2['opsiIkan']/$max['minK1'],2)."</td>
-   <td>".round($dt2['hargaIkan']/$max['minK2'],2)."</td>
-   <td>".round($dt2['jumlahIkan']/$max['maxK3'],2)."</td>
-  </tr>";
- $no++;
- }
- echo "</table>";
+	public function konfirmTransaksi($id){
+		$edit= transaksi::find($id);
+		$edit->status= '4';
+
+		if ($edit->save()) {
+      # code...
+			$edit->save(); 
+
+			$insert = ([
+				'transaksi' => $request->transaksi,
+				'bukti' => $request->bukti,
+				]);
+			transaksiFinal::create($insert);
+
+			return redirect()->back();
+		}
+
+	}
+
+	public function hitung() {
+		$hargas=ikan::all();
+ 		$hargamin=ikan::orderBy('hargaIkan','ASC')->limit(1)->value('hargaIkan');
+		$prices=array();
+		$result=array();
+		$a=0;
+		foreach ($hargas as $harga) {
+			$prices[$a]=$harga->hargaIkan;
+			$result[$a]=$prices[$a]/$hargamin;
+			$a++;
+
+		} 
 
 
- //Proses perangkingan dengan rumus langkah 3
- $sql3 = mysqli_query("SELECT * FROM penawaranIkan");
- //Buat tabel untuk menampilkan hasil
- echo "<H3>Perangkingan</H3>
- <table width=500 style='border:1px; #ddd; solid; border-collapse:collapse' border=1>
-  <tr>
-   <td>no</td>
-   <td>id Penawaran</td>
-   <td>SAW</td>
-</tr>
-  ";
+		$jumlahs=ikan::all();
+		$jumlahmax=ikan::orderBy('jumlahIkan','DESC')->limit(1)->value('jumlahIkan');
+		$totals=array();
+		$result2=array();
+		$b=0;
+		foreach ($jumlahs as $jumlah) {
+			$totals[$b]=$jumlah->jumlahIkan;
+			$result2[$b]=$totals[$b]/$jumlahmax;
+			$b++;
+		} 
 
-//Kita gunakan rumus (Normalisasi x bobot)
- while ($dt3 = mysql_fetch_array($sql3)) {
-  $jumlah= ($dt3['opsiIkan'])+($dt3['hargaIkan'])+($dt3['jumlahIkan']);
-  $poin= round(
-   (($dt3['opsiIkan']/$min['minK1'])*$bobot[0])+
-   (($dt3['hargaIkan']/$min['minK2'])*$bobot[1])+
-   (($dt3['jumlahIkan']/$max['maxK3'])*$bobot[2])
+		$jeniss=ikan::all();
+		$jenismin=ikan::orderBy('opsiIkan','ASC')->limit(1)->value('opsiIkan');
+		$types=array();
+		$result3=array();
+		$c=0;
+		foreach ($jeniss as $jenis) {
+			$types[$c]=$jenis->opsiIkan;
+			$result3[$c]=$types[$c]/$jenismin;
+			$c++;
+		} 
 
-  $data['selesai']=array('idPenawaran'=>getPenawaran($dt3['idPenawaran']),
-      'poin'=>$poin);
+		 
+		$semua=ikan::all();
+		$results=array();
+		$d=0;
+		foreach ($semua as $sem) {
+			$results[$d]=($result[$d]*0.4) +($result2[$d]*0.4 )+($result3[$d]*0.2);
+			$d++;
 
- }
-
-
-//mengurutkan data
-   foreach ($data as $key => $isi) {
-    $idPenawaran[$key]=$isi['idPenawaran'];
-    $poin1[$key]=$isi['poin'];
-   }
-   array_multisort($poin1,SORT_DESC,$data);
-   $no=1;
-
-   foreach ($data as $item) { ?>
-   <tr>
-   <td><?php echo $no ?></td>
-   <td><?php echo$item['idPenawaran'] ?></td>
-   <td><?php echo$item['poin'] ?></td>
-   </tr>
-   return redirect('daftarPenawaranPengusaha');
-
-}*/
-
+		}
+ 
+		 $e=0; 
+		foreach ($results as $tes) {
+			$test=ikan:: findOrFail($e+1);
+			$test->totalSAW=$results[$e];
+			$e++; 
+			$test->save();
+		}
+		$tampil=ikan::orderBy('totalSAW','DESC')->get();
+		 
+ 		return view('daftarPenawaranPengusaha',compact('tampil'));
 
 
+	}
 }

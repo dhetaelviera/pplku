@@ -32,6 +32,30 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title"> </h3>
+
+									<div class="panel-body table-responsive table-full">
+									<table class="table table-stripped table-bordered">
+									
+									<tr>
+											<td class="text-center text-nowrap">ID Transaksi</td>
+											<td class="text-center text-nowrap">Tanggal Beli</td>
+											<td class="text-center text-nowrap">Pengusaha</td>
+											<td class="text-center text-nowrap">Action</td>
+										</tr>
+
+										@foreach($tampils as $data)
+										<tr>
+											<td class="text-center text-nowrap">{{$data->idTransaksi}}</td>
+											<td class="text-center text-nowrap">{{$data->tanggal}}</td> 
+											<td class="text-center text-nowrap">{{$data->orang->name}}</td>
+											 <td class="text-center text-nowrap">
+											<a href="/lanjutkanTransaksi/{{$data->idTransaksi}}"><button type="submit" class="btn btn-success"> <font color="white">Lanjutkan</font></button></a>
+											 
+										</tr>
+										@endforeach
+
+									</table> 
+									</div>
 									  
 								</div>
 								 

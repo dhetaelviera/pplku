@@ -33,43 +33,34 @@
 								 <div class="panel-body table-responsive table-full">
 									<table class="table table-stripped table-bordered">
 									
-									<tr>
-											<td class="text-center text-nowrap">ID Penawaran</td>
+									<tr> 
 											<td class="text-center text-nowrap">Tanggal</td>
 											<td class="text-center text-nowrap">Jenis Ikan</td>
 											<td class="text-center text-nowrap">Nama Ikan</td> 
 											<td class="text-center text-nowrap">Jumlah (kg)</td>
 											<td class="text-center text-nowrap">Harga (Rp)</td>
 											<td class="text-center text-nowrap">Status</td>
+											<td class="text-center text-nowrap">Agen</td>
 											 <td class="text-center text-nowrap">Action</td>
 										</tr>
 
-										<?php $__currentLoopData = $tampil; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-										<tr>
-											<td class="text-center text-nowrap"><?php echo e($data->idPenawaran); ?></td>
+										<?php $__currentLoopData = $tampils; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+										<tr> 	 
 											<td class="text-center text-nowrap"><?php echo e($data->tanggalPenawaran); ?></td>
-											<td class="text-center text-nowrap"><?php echo e($data->opsiIkan); ?></td> 
+											<td class="text-center text-nowrap"><?php echo e($data->tes->opsi); ?></td> 
 											<td class="text-center text-nowrap"><?php echo e($data->jenisIkan); ?></td>
 											<td class="text-center text-nowrap"><?php echo e($data->jumlahIkan); ?></td>
 											<td class="text-center text-nowrap"><?php echo e($data->hargaIkan); ?></td>
-											<td class="text-center text-nowrap"><?php echo e($data->status); ?></td>
-											 
+											<td class="text-center text-nowrap"><?php echo e($data->nawar->keteranganStatus); ?></td>
+											<td class="text-center text-nowrap"><?php echo e($data->pemilik->name); ?></td>
 											<td class="text-center text-nowrap">
 											<a href="/editPenawaran/<?php echo e($data->idPenawaran); ?>"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-list-alt"></i><font color="white">Ubah</font></button></a>
 											</td>
 										</tr>
-										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
-
+										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
 									</table>
-									<div class="text-grey">
-									<p>Keterangan</p>
-										<p>Jenis Ikan 1: ikan laut</p>
-										<p>Jenis Ikan 2: ikan tawar</p>
-										<p>Status 1: ditawarkan</p>
-										<p>Status 2: terjual</p>
-									</div>
+									 
 									</div>
 
 							</div>

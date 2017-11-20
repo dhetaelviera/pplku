@@ -29,59 +29,55 @@
 				<div class="col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Data Penawaran Ikan</h3>
+							<h3 class="panel-title">Terima Pembelian</h3>
 							<span class="text-grey">oleh {{ Auth::user()->name }}</span>
 						</div>
 						<div class="panel-body">
-							<form action="/updatePenawaran/{{$edit->idPenawaran}}" method="POST" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+							<form action="/updateTolakTransaksi/{{$edit->idTransaksi}}" method="POST" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
 								{{ csrf_field() }}
 
 								<div class="form-group">  
-									<label class="col-sm-3 control-label">Tanggal Penawaran</label>
+									<label class="col-sm-3 control-label">Tanggal Beli</label>
 									<div class="col-sm-6">
-										<input type="date" placeholder="Placeholder text" class="form-control" name="tanggalPenawaran" value="{{$edit->tanggalPenawaran}}" readonly="readonly" required> 
+										<input type="date" placeholder="Placeholder text" class="form-control" name="tanggal" value="{{$edit->tanggal}}" readonly="readonly" required> 
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">Jenis Ikan</label>
+									<label class="col-sm-3 control-label">ID Transaksi</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="opsiIkan" value="{{$edit->opsiIkan}}" readonly="readonly" required>
+										<input type="text" class="form-control" name="id" value="{{$edit->idTransaksi}}" readonly="readonly" required>
 									</div>
 								</div>
+								
 								<div class="form-group">
-									<label class="col-sm-3 control-label">Nama Ikan</label>
+									<label class="col-sm-3 control-label">Pengusaha</label>
 									<div class="col-sm-6">
-										<input type="text" readonly="readonly" class="form-control" name="jenisIkan" value="{{$edit->jenisIkan}}" required>
+										<input type="text" readonly="readonly" class="form-control" name="pengusaha" value="{{$edit->orang->name}}" required>
 									</div>
 								</div>
+
 								<div class="form-group">
-									<label class="col-sm-3 control-label">Jumlah Ikan(kg)</label>
+									<label class="col-sm-3 control-label">No. Rekening</label>
 									<div class="col-sm-6">
-										<input type="text" placeholder="kg" readonly="readonly" class="form-control" name="jumlahIkan" value="{{$edit->jumlahIkan}}" required>
+										<input type="text" readonly="readonly" class="form-control" name="rekening" value="{{$edit->orang->rekening}}" required>
 									</div>
 								</div>
+
 								<div class="form-group">
-									<label class="col-sm-3 control-label">Harga Ikan (Rp)</label>
+									<label class="col-sm-3 control-label">Total</label>
 									<div class="col-sm-6">
-										<input type="text" placeholder="Rp" class="form-control" readonly="readonly" name="hargaIkan" value="{{$edit->hargaIkan}}" required>
+										<input type="text" readonly="readonly" class="form-control" name="jenisIkan" value="{{$edit->orang->rekening}}" required>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Status Penawaran</label>
-									<div class="col-sm-6">
-										<select name="statusPenawaran" class="form-control"  >
-											<option value="1">ditawarkan</option>
-											<option value="2">terjual</option>
-										</select>
-									</div>
-								</div> 
+								 
+								 
 								<div class="form-group">
 									<div class="col-sm-9" align="right">
 										<br>
 										<br>
 										<div class="form-group">
 											<div class="col-sm-9" align="right">
-												<button class="btn btn-success" type="submit" value="edit" name="submit">Perbarui</button>
+												<button class="btn btn-danger" type="submit" value="edit" name="submit">Tolak Transaksi</button>
 											</div>
 										</div>
 							 		</div>

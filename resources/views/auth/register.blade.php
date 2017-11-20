@@ -58,12 +58,7 @@
 
                             <div class="col-md-6">
                                  <input type="text" class="form-control" name="kecamatan" value="{{ old('kecamatan') }}">
-
-                               @if ($errors->has('kecamatan'))
-                                 <span class="help-block">
-                                     <strong>{{ $errors->first('kecamatan') }}</strong>
-                                </span>
-                                @endif
+ 
                             </div>
                         </div> 
 
@@ -72,12 +67,7 @@
 
                             <div class="col-md-6">
                                  <input type="text" class="form-control" name="kabupaten" value="{{ old('kabupaten') }}">
-
-                               @if ($errors->has('kabupaten'))
-                                 <span class="help-block">
-                                     <strong>{{ $errors->first('kabupaten') }}</strong>
-                                </span>
-                                @endif
+ 
                             </div>
                         </div>  
 
@@ -86,12 +76,7 @@
 
                             <div class="col-md-6">
                                  <input type="text" class="form-control" name="provinsi" value="{{ old('provinsi') }}">
-
-                               @if ($errors->has('provinsi'))
-                                 <span class="help-block">
-                                     <strong>{{ $errors->first('provinsi') }}</strong>
-                                </span>
-                                @endif
+ 
                             </div>
                         </div>
 
@@ -109,7 +94,19 @@
                             </div>
                         </div> 
 
+                        <div class="form-group{{ $errors->has('noTelepon') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">no. Rekening</label>
 
+                            <div class="col-md-6">
+                                 <input type="text" class="form-control" name="rekening" value="{{ old('rekening') }}">
+
+                               @if ($errors->has('rekening'))
+                                 <span class="help-block">
+                                     <strong>{{ $errors->first('rekening') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div> 
 
                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Username</label>

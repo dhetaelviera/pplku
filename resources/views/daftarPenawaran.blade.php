@@ -35,43 +35,34 @@
 								 <div class="panel-body table-responsive table-full">
 									<table class="table table-stripped table-bordered">
 									
-									<tr>
-											<td class="text-center text-nowrap">ID Penawaran</td>
+									<tr> 
 											<td class="text-center text-nowrap">Tanggal</td>
 											<td class="text-center text-nowrap">Jenis Ikan</td>
 											<td class="text-center text-nowrap">Nama Ikan</td> 
 											<td class="text-center text-nowrap">Jumlah (kg)</td>
 											<td class="text-center text-nowrap">Harga (Rp)</td>
 											<td class="text-center text-nowrap">Status</td>
+											<td class="text-center text-nowrap">Agen</td>
 											 <td class="text-center text-nowrap">Action</td>
 										</tr>
 
-										@foreach($tampil as $data)
-										<tr>
-											<td class="text-center text-nowrap">{{$data->idPenawaran}}</td>
+										@foreach($tampils as $data)
+
+										<tr> 	 
 											<td class="text-center text-nowrap">{{$data->tanggalPenawaran}}</td>
-											<td class="text-center text-nowrap">{{$data->opsiIkan}}</td> 
+											<td class="text-center text-nowrap">{{$data->tes->opsi}}</td> 
 											<td class="text-center text-nowrap">{{$data->jenisIkan}}</td>
 											<td class="text-center text-nowrap">{{$data->jumlahIkan}}</td>
 											<td class="text-center text-nowrap">{{$data->hargaIkan}}</td>
-											<td class="text-center text-nowrap">{{$data->status}}</td>
-											 
+											<td class="text-center text-nowrap">{{$data->nawar->keteranganStatus}}</td>
+											<td class="text-center text-nowrap">{{$data->pemilik->name}}</td>
 											<td class="text-center text-nowrap">
 											<a href="/editPenawaran/{{$data->idPenawaran}}"><button type="submit" class="btn btn-success"><i class="fa fa-fw fa-list-alt"></i><font color="white">Ubah</font></button></a>
 											</td>
 										</tr>
-										@endforeach
-
-
-
+										@endforeach 
 									</table>
-									<div class="text-grey">
-									<p>Keterangan</p>
-										<p>Jenis Ikan 1: ikan laut</p>
-										<p>Jenis Ikan 2: ikan tawar</p>
-										<p>Status 1: ditawarkan</p>
-										<p>Status 2: terjual</p>
-									</div>
+									 
 									</div>
 
 							</div>

@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'kabupaten' => 'required|unique:users',
             'provinsi' => 'required|unique:users',
             'noTelepon' => 'required|unique:users',
+            'rekening' => 'required|unique:users',
             'username' => 'required|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'sebagai' => 'required',
@@ -79,28 +80,12 @@ class RegisterController extends Controller
             'kabupaten' => $data['kabupaten'],
             'provinsi' => $data['provinsi'],
             'noTelepon' => $data['noTelepon'],
+            'rekening' => $data['rekening'],
             'username' => $data['username'],
             'password' => bcrypt($data['password']),
             'sebagai' => $data['sebagai'],
             
         ]);
     }
-
-    public function updateProfil(array $data){ 
-        if ($request->oke) {
-            DB::table('users')
-            ->where('id', $request->id)
-            ->update(['name' => $data['name'],
-            'email' => $data['email'],
-            'alamat' => $data['alamat'],      
-            'username' => $data['username'],
-            'password' => bcrypt($data['password']), 
-            ]);
-            $request->session()->flash('sukses','Berhasil Merubah Data');
-            return redirect('profilAgen');
-
-        }else{
-            return redirect('profilAgen');
-        }
-}
+ 
 }

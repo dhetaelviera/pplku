@@ -34,11 +34,11 @@
 				</div>
 				<ul class="sidebar-nav">
 					
-					<li><a href="{{ url('/profilPengusaha') }}"> <span>Profil</span></a></li>
+					<li><a href="{{ url('/profilPengusaha/'.Auth::user()->id)}}"> <span>Profil</span></a></li>
 					
 					<li><a href="{{ url('/daftarPenawaranPengusaha') }}"> <span>Lihat Penawaran Ikan</span></a></li>
 
-					<li><a href="{{ url('/notifikasiPengusaha') }}"><span>Notifikasi</span></a></li>
+					<li><a href="{{ url('/notifikasiPengusaha/'.Auth::user()->id)}}"><span>Notifikasi</span></a></li>
 					
 					<li><a href="{{ url('/transaksi') }}"><span>Transaksi</span></a></li>
 					

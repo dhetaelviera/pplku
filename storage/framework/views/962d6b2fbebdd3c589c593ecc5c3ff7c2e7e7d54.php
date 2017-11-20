@@ -27,42 +27,50 @@
 								<div class="panel-body">
 									<form action="#" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
 										 
-										<div class="form-group">
+									<div class="form-group">
 											<label class="col-sm-3 control-label">Nama</label>
 											<div class="col-sm-6">
-												<input type="text" readonly="readonly" value=" " class="form-control">
+												<input type="text" value="<?php echo e(Auth::user()->name); ?>" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Status</label>
 											<div class="col-sm-6">
-												<input type="text" readonly="readonly" value=" " class="form-control">
+												<input type="text"   value="<?php echo e(Auth::user()->lev->level); ?> " class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">E-mail</label>
 											<div class="col-sm-6">
-												<input type="text" readonly="readonly" value=" " class="form-control">
+												<input type="text"   value=" <?php echo e(Auth::user()->email); ?>" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">No. Telepon</label>
 											<div class="col-sm-6">
-												<input type="text" readonly="readonly" value=" " class="form-control">
+												<input type="text"   value="<?php echo e(Auth::user()->noTelepon); ?> " class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Alamat</label>
 											<div class="col-sm-6">
-												<input type="text" readonly="readonly" value=" " class="form-control">
+												<input type="text"   value=" <?php echo e(Auth::user()->alamat); ?>" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
+											<label class="col-sm-3 control-label">No. Rekening</label>
+											<div class="col-sm-6">
+												<input type="text"   value=" <?php echo e(Auth::user()->rekening); ?>" class="form-control">
+											</div>
+										</div>
+										<!-- 
+										 <div class="form-group">
 											<div class="col-sm-9" align="right">
 												<button class="btn btn-success" type="submit">Ubah Profil</button>
 											</div>
 										</div>
-										 
+										 -->
+										
 									</form>
 								</div>
 							</div>

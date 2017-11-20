@@ -34,11 +34,11 @@
 				</div>
 				<ul class="sidebar-nav">
 					
-					<li><a href="<?php echo e(url('/profilPengusaha')); ?>"> <span>Profil</span></a></li>
+					<li><a href="<?php echo e(url('/profilPengusaha/'.Auth::user()->id)); ?>"> <span>Profil</span></a></li>
 					
 					<li><a href="<?php echo e(url('/daftarPenawaranPengusaha')); ?>"> <span>Lihat Penawaran Ikan</span></a></li>
 
-					<li><a href="<?php echo e(url('/notifikasiPengusaha')); ?>"><span>Notifikasi</span></a></li>
+					<li><a href="<?php echo e(url('/notifikasiPengusaha/'.Auth::user()->id)); ?>"><span>Notifikasi</span></a></li>
 					
 					<li><a href="<?php echo e(url('/transaksi')); ?>"><span>Transaksi</span></a></li>
 					

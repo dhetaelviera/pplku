@@ -35,11 +35,13 @@
 					
 					<!-- <li><a href="{{ url('/profilAgen') }}"> <span>Ubah Profil</span></a></li>
 					 -->
+					<li><a href="{{ url('/profilAgen/'.Auth::user()->id) }}"> <span>Profil</span></a></li>
+
 					<li><a href="{{ url('/buatPenawaran') }}"> <span>Buat Penawaran Ikan</span></a></li>
 
-					<li><a href="{{ url('/daftarPenawaran') }}"><span>Daftar Penawaran </span></a></li>
+					<li><a href="{{ url('/daftarPenawaran/'.Auth::user()->id) }}"><span>Daftar Penawaran </span></a></li>
 					
-					<li><a href="{{ url('/notifikasiAgen') }}"><span>Notifikasi</span></a></li>
+					<li><a href="{{ url('/notifikasiAgen/'.Auth::user()->id) }}"><span>Notifikasi</span></a></li>
 					
 					<li><a href="{{ url('/welcome') }}"><span>Transaksi</span></a></li>
 					

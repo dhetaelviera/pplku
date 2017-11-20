@@ -6,25 +6,33 @@ use Illuminate\Database\Eloquent\Model;
 class ikan extends Model
 {
 
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+ 
 
     protected $table = 'penawaranIkan';
     protected $primaryKey = 'idPenawaran';
-    protected $fillable = ['idPenawaran','tanggalPenawaran','idAgen', 'opsiIkan','jenisIkan','jumlahIkan','hargaIkan','status'];
- 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    
-    /**
-   protected $inner_join = golekiwak('SELECT penawaranIkan.idPenawaran, penawaranIkan.tanggalPenawaran, penawaranIkan.jenisIkan, penawaranIkan.jumlahIkan, penawaranIkan.hargaIkan, statusPenawaran.Keterangan FROM penawaranIkan INNER JOIN statusPenawaran ON penawaranIkan.statusPenawaran=statusPenawaran.idStatusPenawaran');
- */
-	public $timestamps = false;
+    protected $fillable = ['idPenawaran','tanggalPenawaran','idAgen', 'opsiIkan','jenisIkan','jumlahIkan','hargaIkan','status','totalSAW'];
+
+    public function pemilik() {
+
+        return  $this->belongsTo('App\User','idAgen'); 
+
     }
+    public function tes() {
+
+    	return	$this->belongsTo('App\jenis','opsiIkan'); 
+
+    }
+
+    public function nawar(){
+        return $this -> belongsTo ('App\statusPenawaran','status');
+    }
+ 
+
+    public function ranks(){
+        return $this -> belongsTo ('App\rank','idPenawaran');
+    }
+ 
+
+
+    public $timestamps = false;
+}
