@@ -1,5 +1,3 @@
-@section('js')
-
 
 
 
@@ -38,7 +36,7 @@
 							<span class="text-grey">oleh {{ Auth::user()->name }}</span>
 						</div>
 						<div class="panel-body">
-							<form action="/updateTransaksi/{{$edit->idTransaksi}}" method="POST" enctype="multipart/form-data" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+							<form action="/updateTransaksi/{{$edit->idTransaksi}}" method="POST" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
 								{{ csrf_field() }}
 
 								<div class="form-group">  

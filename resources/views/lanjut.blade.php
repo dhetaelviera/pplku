@@ -1,3 +1,25 @@
+@section('js')
+<script type="text/javascript">
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showgambar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputgambar").change(function () {
+        readURL(this);
+    });
+
+</script>
+
+
 @extends('layouts.sidebarPengusaha')
 
 @section('content')
@@ -33,7 +55,7 @@
 							<span class="text-grey">oleh {{ Auth::user()->name }}</span>
 						</div>
 						<div class="panel-body">
-							<form action="/konfirmTransaksi/{{$edit->idTransaksi}}" method="POST" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+							<form action="/konfirmTransaksi/{{$edit->idTransaksi}}"  enctype="multipart/form-data"  method="POST" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
 								{{ csrf_field() }}
 
 								<div class="form-group">  
@@ -80,11 +102,11 @@
 								  <div class="form-group">
 									<label class="col-sm-3 control-label">Bukti transfer</label>
 									<div class="col-sm-6" style="border: none;">
-										<input type="file"  class="form-control" name="transfer"   required>
+										<img src="http://placehold.it/100x100" id="showgambar" style="max-width:200px;max-height:200px;float:left;" />
+										<input type="file"  class="form-control" name="bukti"   required>
 									</div>
 								</div>
-
-
+								
 								<div class="form-group">
 									<div class="col-sm-9" align="right">
 										<br>

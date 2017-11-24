@@ -26,6 +26,7 @@ Route::post('/insertPenawaran', 'controllerAgen@insertPenawaran');
 Route::get('/sidebarAgen_layouts', 'controllerAgen@keluar');
 Route::get('/daftarPenawaran/{id}', 'controllerAgen@view');
 Route::get('/notifikasiAgen/{id}', 'controllerAgen@notif');
+Route::get('/transaksiAgen/{id}', 'controllerAgen@lihatTransaksi');
 
 Route::get('/profilAgen/{id}', 'controllerAgen@profil')->name('profil');
 Route::post('/updateProfil/{id}', 'controllerAgen@updateProfil')->name('profil');
@@ -37,6 +38,7 @@ Route::post('/updatePenawaran/{id}', 'controllerAgen@updatePenawaran');
 //pengusaha
 Route::get('/dashboardPengusaha', 'controllerPengusaha@home')->name('home');
 Route::get('/notifikasiPengusaha/{id}', 'controllerPengusaha@notif')->name('notif');
+Route::get('/transaksiPengusaha/{id}', 'controllerPengusaha@lihatTransaksi')->name('transaksi');
 Route::get('/daftarPenawaranPengusaha', 'controllerPengusaha@hitung')->name('daftar');
 Route::get('/daftarAgen', 'controllerPengusaha@agen')->name('daftar');
 Route::get('/transaksiPengusaha/{id}', 'controllerPengusaha@transaksi')->name('daftar');
@@ -55,5 +57,7 @@ Route::post('/updateTolakTransaksi/{id}', 'controllerAgen@updateTolakTransaksi')
 
 //ini mau proses konfirmasi setelah dikirimin no.rekening
 Route::get('/lanjutkanTransaksi/{id}', 'controllerPengusaha@lanjutkanTransaksi'); 
-Route::post('/updateTransaksi/{id}', 'controllerAgen@updateTransaksi'); 
-Route::post('/konfirmTransaksi/{id}', 'controllerAgen@konfirmTransaksi'); 
+Route::post('/updateTransaksi/{id}', 'controllerAgen@updateTransaksi');
+
+//ini mau proses konfirmasi pas pengusaha ngirimin bukti transaksi  
+Route::post('/konfirmTransaksi/{id}', 'controllerPengusaha@konfirmTransaksi'); 

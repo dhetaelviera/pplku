@@ -31,7 +31,7 @@
 						<div class="col-md-12">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h3 class="panel-title"> Transaksi </h3>
+									<h3 class="panel-title"> Transaksi Berhasil</h3>
 
 									<div class="panel-body table-responsive table-full">
 									<table class="table table-stripped table-bordered">
@@ -43,7 +43,7 @@
 											<td class="text-center text-nowrap">Agen</td> 
 										</tr>
 
-										@foreach($edit as $data)
+										@foreach($tampils as $data)
 										<tr>
 											<td class="text-center text-nowrap">{{$data->idTransaksi}}</td>
 											<td class="text-center text-nowrap">{{$data->tanggal}}</td> 

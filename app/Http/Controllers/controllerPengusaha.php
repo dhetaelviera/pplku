@@ -32,6 +32,13 @@ class controllerPengusaha extends Controller
 		return view('daftarPenawaranPengusaha',compact('tampil'));
 	}
 
+	public function lihatTransaksi($id)
+	{
+		$tampils= transaksi::where('pengusaha',$id)->where('status',4)->get();    
+		return view('transaksiPengusaha',compact('tampils'));
+
+	}  
+
 	public function agen(Request $request)
 	{
 
@@ -110,13 +117,19 @@ class controllerPengusaha extends Controller
 		return view('lanjut',compact('edit'));
 	}
 
-	public function konfirmTransaksi($id){
+	public function konfirmTransaksi(Request $request, $id){
 		$edit= transaksi::find($id);
 		$edit->status= '4';
-		$edit->bukti=$fileName;
+
+		// Disini proses mendapatkan judul dan memindahkan letak gambar ke folder image
+        $file       = $request->file('bukti');
+        $fileName   = $file->getClientOriginalName();
+        $request->file('bukti')->move("image/", $fileName);
+
+        $edit->bukti = $fileName;
 		$edit->save();
  
-		return redirect()->to('notifikasiPengusaha');
+		return redirect()->back();
 		}
 
 	 

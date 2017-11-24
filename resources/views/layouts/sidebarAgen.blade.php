@@ -45,7 +45,7 @@
 					
 					<li><a href="{{ url('/notifikasiAgen/'.Auth::user()->id) }}"><span>Notifikasi</span></a></li>
 					
-					<li><a href="{{ url('/welcome') }}"><span>Transaksi</span></a></li>
+					<li><a href="{{ url('/transaksiAgen/'.Auth::user()->id) }}"><span>Transaksi</span></a></li>
 					
 					<li><a href="{{ url('/home') }}"><span>Kembali ke Awal</span></a></li>
 					

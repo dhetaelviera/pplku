@@ -59,6 +59,15 @@ class controllerAgen extends Controller
 		return view('home');
 
 	}
+
+
+	public function lihatTransaksi($id)
+	{
+		$tampils= transaksi::where('agen',$id)->where('status',4)->get();    
+		return view('transaksiAgen',compact('tampils'));
+
+	}  
+
 	public function profil($id)
 	{ 
 		return view('profilAgen', compact(Auth::user()->id));

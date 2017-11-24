@@ -41,7 +41,7 @@
 
 					<li><a href="{{ url('/notifikasiPengusaha/'.Auth::user()->id)}}"><span>Notifikasi</span></a></li>
 					
-					<li><a href="{{ url('/transaksi') }}"><span>Transaksi</span></a></li>
+					<li><a href="{{ url('/transaksiPengusaha/'.Auth::user()->id)}}"><span>Transaksi</span></a></li>
 					
 					<li><a href="{{ url('/home') }}"><span>Keluar</span></a></li>
 					

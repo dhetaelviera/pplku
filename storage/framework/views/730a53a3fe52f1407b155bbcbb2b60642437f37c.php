@@ -41,7 +41,7 @@
 
 					<li><a href="<?php echo e(url('/notifikasiPengusaha/'.Auth::user()->id)); ?>"><span>Notifikasi</span></a></li>
 					
-					<li><a href="<?php echo e(url('/transaksi')); ?>"><span>Transaksi</span></a></li>
+					<li><a href="<?php echo e(url('/transaksiPengusaha/'.Auth::user()->id)); ?>"><span>Transaksi</span></a></li>
 					
 					<li><a href="<?php echo e(url('/home')); ?>"><span>Keluar</span></a></li>
 					
