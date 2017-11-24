@@ -10,7 +10,7 @@ class transaksi extends Model
 
     protected $table = 'transaksi';
     protected $primaryKey = 'idTransaksi';
-    protected $fillable = ['idTransaksi','tanggal','penawaran','agen', 'pengusaha','status'];
+    protected $fillable = ['idTransaksi','tanggal','penawaran','agen', 'pengusaha','status','bukti'];
 
 //ini buat pengusaha
     public function orang(){
@@ -22,9 +22,10 @@ class transaksi extends Model
     public function dari(){
         return $this-> belongsTo('App\User','agen');
 
-    }
-     public function tran(){
-    	return $this-> belongsTo('App\transaksiFinal','idTransaksi');
+    } 
+
+    public function ikans(){
+    	return $this-> belongsTo('App\ikan','idPenawaran');
 
     }
   

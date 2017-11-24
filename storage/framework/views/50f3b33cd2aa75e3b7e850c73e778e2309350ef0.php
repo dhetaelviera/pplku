@@ -28,7 +28,7 @@
 				 
 				</div>
 				<div class="sidebar-avatar">
-					<div class="sidebar-avatar-image"><img src="assets/images/10.png" width="100px" height="100px" alt="" class="img-circle"></div>
+					 
 					<div class="sidebar-avatar-text">  <?php echo e(Auth::user()->name); ?>  </div>
 				</div>
 				<ul class="sidebar-nav">
@@ -36,6 +36,8 @@
 					<!-- <li><a href="<?php echo e(url('/profilAgen')); ?>"> <span>Ubah Profil</span></a></li>
 					 -->
 					<li><a href="<?php echo e(url('/profilAgen/'.Auth::user()->id)); ?>"> <span>Profil</span></a></li>
+
+					<li><a href="<?php echo e(url('/daftarPengusaha')); ?>"> <span>Daftar Pengusaha</span></a></li>
 
 					<li><a href="<?php echo e(url('/buatPenawaran')); ?>"> <span>Buat Penawaran Ikan</span></a></li>
 

@@ -1,3 +1,8 @@
+@section('js')
+
+
+
+
 @extends('layouts.sidebarPengusaha')
 
 @section('content')
@@ -33,7 +38,7 @@
 							<span class="text-grey">oleh {{ Auth::user()->name }}</span>
 						</div>
 						<div class="panel-body">
-							<form action="/updateTransaksi/{{$edit->idTransaksi}}" method="POST" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+							<form action="/updateTransaksi/{{$edit->idTransaksi}}" method="POST" enctype="multipart/form-data" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
 								{{ csrf_field() }}
 
 								<div class="form-group">  
@@ -80,7 +85,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Bukti transfer</label>
 									<div class="col-sm-6">
-										<input type="text" readonly="readonly" class="form-control" name="jenisIkan" value="{{$edit->orang->rekening}}" required>
+										<input type="file" class="validate"/ name="bukti"  required>
 									</div>
 								</div>
 								  

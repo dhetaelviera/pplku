@@ -44,7 +44,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Jenis Ikan</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="opsiIkan" value="<?php echo e($edit->opsiIkan); ?>" readonly="readonly" required>
+										<input type="text" class="form-control" name="opsiIkan" value="<?php echo e($edit->tes->opsi); ?>" readonly="readonly" required>
 									</div>
 								</div>
 								<div class="form-group">

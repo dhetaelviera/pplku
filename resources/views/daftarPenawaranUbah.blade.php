@@ -45,7 +45,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Jenis Ikan</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="opsiIkan" value="{{$edit->opsiIkan}}" readonly="readonly" required>
+										<input type="text" class="form-control" name="opsiIkan" value="{{$edit->tes->opsi}}" readonly="readonly" required>
 									</div>
 								</div>
 								<div class="form-group">

@@ -1,7 +1,7 @@
+
 @extends('layouts.sidebarAgen')
 
 @section('content')
- 
 <div id="main-panel">
 			<div id="top-nav">
 				<nav class="navbar navbar-default">

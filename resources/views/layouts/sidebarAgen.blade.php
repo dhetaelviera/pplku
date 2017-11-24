@@ -28,7 +28,7 @@
 				 
 				</div>
 				<div class="sidebar-avatar">
-					<div class="sidebar-avatar-image"><img src="assets/images/10.png" width="100px" height="100px" alt="" class="img-circle"></div>
+					 
 					<div class="sidebar-avatar-text">  {{ Auth::user()->name }}  </div>
 				</div>
 				<ul class="sidebar-nav">
@@ -36,6 +36,8 @@
 					<!-- <li><a href="{{ url('/profilAgen') }}"> <span>Ubah Profil</span></a></li>
 					 -->
 					<li><a href="{{ url('/profilAgen/'.Auth::user()->id) }}"> <span>Profil</span></a></li>
+
+					<li><a href="{{ url('/daftarPengusaha') }}"> <span>Daftar Pengusaha</span></a></li>
 
 					<li><a href="{{ url('/buatPenawaran') }}"> <span>Buat Penawaran Ikan</span></a></li>
 

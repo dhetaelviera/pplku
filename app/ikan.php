@@ -31,6 +31,10 @@ class ikan extends Model
     public function ranks(){
         return $this -> belongsTo ('App\rank','idPenawaran');
     }
+
+    public function kans(){
+        return $this -> belongsTo ('App\transaksi','idTransaksi');
+    }
  
 
 

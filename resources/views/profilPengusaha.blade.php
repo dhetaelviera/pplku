@@ -27,45 +27,63 @@
 
 								</div>
 								<div class="panel-body">
-									<form action="#" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
-										 
+									<form action="/updateProfil/{{Auth::user()->id}}" method="POST" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+									{{ csrf_field() }}	 
 									<div class="form-group">
 											<label class="col-sm-3 control-label">Nama</label>
 											<div class="col-sm-6">
-												<input type="text" value="{{ Auth::user()->name }}" class="form-control">
+												<input type="text" value="{{ Auth::user()->name }}" name="name" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Status</label>
 											<div class="col-sm-6">
-												<input type="text"   value="{{ Auth::user()->lev->level }} " class="form-control">
+												<input type="text"   value="{{ Auth::user()->lev->level }} " name="sebagai" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">E-mail</label>
 											<div class="col-sm-6">
-												<input type="text"   value=" {{ Auth::user()->email }}" class="form-control">
+												<input type="text"   value=" {{ Auth::user()->email }}" name="email" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">No. Telepon</label>
 											<div class="col-sm-6">
-												<input type="text"   value="{{ Auth::user()->noTelepon }} " class="form-control">
+												<input type="text"   value="{{ Auth::user()->noTelepon }} " name="noTelepon" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Alamat</label>
 											<div class="col-sm-6">
-												<input type="text"   value=" {{ Auth::user()->alamat}}" class="form-control">
+												<input type="text"   value=" {{ Auth::user()->alamat}}" name="alamat" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Kecamatan</label>
+											<div class="col-sm-6">
+												<input type="text"   value=" {{ Auth::user()->kecamatan}}" name="kecamatan" name="alamat" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Kabupaten</label>
+											<div class="col-sm-6">
+												<input type="text"   value=" {{ Auth::user()->kabupaten}}" name="kabupaten" name="alamat" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Provinsi</label>
+											<div class="col-sm-6">
+												<input type="text"   value=" {{ Auth::user()->provinsi}}" name="provinsi" name="alamat" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">No. Rekening</label>
 											<div class="col-sm-6">
-												<input type="text"   value=" {{ Auth::user()->rekening}}" class="form-control">
+												<input type="text"   value=" {{ Auth::user()->rekening}}" name="rekening" class="form-control">
 											</div>
 										</div>
-										<!-- 
+										 
 										 <div class="form-group">
 											<div class="col-sm-9" align="right">
 												<button class="btn btn-success" type="submit">Ubah Profil</button>

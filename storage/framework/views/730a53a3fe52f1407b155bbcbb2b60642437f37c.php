@@ -29,12 +29,13 @@
 					
 				</div>
 				<div class="sidebar-avatar">
-					<div class="sidebar-avatar-image"><img src="assets/images/2.png" alt="" class="img-circle"></div>
-					<div class="sidebar-avatar-text"> <?php echo e(Auth::user()->name); ?> </div>
+					 <div class="sidebar-avatar-text"> <?php echo e(Auth::user()->username); ?> </div>
 				</div>
 				<ul class="sidebar-nav">
 					
 					<li><a href="<?php echo e(url('/profilPengusaha/'.Auth::user()->id)); ?>"> <span>Profil</span></a></li>
+
+					<li><a href="<?php echo e(url('/daftarAgen')); ?>"> <span>Lihat Daftar Agen</span></a></li>
 					
 					<li><a href="<?php echo e(url('/daftarPenawaranPengusaha')); ?>"> <span>Lihat Penawaran Ikan</span></a></li>
 

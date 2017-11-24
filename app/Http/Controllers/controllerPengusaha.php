@@ -32,33 +32,35 @@ class controllerPengusaha extends Controller
 		return view('daftarPenawaranPengusaha',compact('tampil'));
 	}
 
+	public function agen(Request $request)
+	{
+
+		$tampil= User::where('sebagai',1)->get();
+		
+		return view('daftarAgen',compact('tampil'));
+	}
+
 	public function profil($id)
 	{
 		$prof= User::where('id',$id);
 		return view('profilPengusaha');
 
 	} 
-	public function updateProfil(Request $request, $id){ 
+	public function updateProfil(Request $request){ 
 
-		$prof=User::find($id);
-
-		$prof = ([
-			'name' =>   $request->name,
-			'email' =>   $request->email,
-			'alamat' =>   $request->alamat,
-			'kecamatan' =>   $request->kecamatan,
-			'kabupaten' =>   $request->kabupaten,
-			'provinsi' =>   $request->provinsi,
-			'noTelepon' =>   $request->noTelepon,
-			'rekening' =>   $request->rekening,
-			'username' =>   $request->username,
-			'password' =>  $request->password,
-			'sebagai' =>   $request->sebagai,
-			]);
-		$prof->save(); 
-
-		return redirect()->back();
+		$prof=Auth::user();
+		$prof->name= $request->name;
+		$prof->email= $request->email;
+		$prof->kecamatan= $request->kecamatan;
+		$prof->kabupaten= $request->kabupaten;
+		$prof->provinsi= $request->provinsi;
+		$prof->noTelepon= $request->noTelepon;
+		$prof->rekening= $request->rekening;
+  		
+  		$prof->save(); 
+  		return view('profilPengusaha', compact(Auth::user()->id)); 
 	}
+
 
 
 	public function keluar()
@@ -111,21 +113,20 @@ class controllerPengusaha extends Controller
 	public function konfirmTransaksi($id){
 		$edit= transaksi::find($id);
 		$edit->status= '4';
-
-		if ($edit->save()) {
-      # code...
-			$edit->save(); 
-
-			$insert = ([
-				'transaksi' => $request->transaksi,
-				'bukti' => $request->bukti,
-				]);
-			transaksiFinal::create($insert);
-
-			return redirect()->back();
+		$edit->bukti=$fileName;
+		$edit->save();
+ 
+		return redirect()->to('notifikasiPengusaha');
 		}
 
-	}
+	 
+
+	public function transaksi($id){
+		$tampils= transaksi::where('pengusaha',$id)->where('status',4)->get();    
+		
+		return view('transaksiPengusaha',compact('tampils'));
+		}
+ 
 
 	public function hitung() {
 		$hargas=ikan::all();
@@ -180,7 +181,7 @@ class controllerPengusaha extends Controller
 			$e++; 
 			$test->save();
 		}
-		$tampil=ikan::orderBy('totalSAW','DESC')->get();
+		$tampil=ikan::orderBy('totalSAW','DESC')->where('status',1)->get();
 		 
  		return view('daftarPenawaranPengusaha',compact('tampil'));
 

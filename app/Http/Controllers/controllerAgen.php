@@ -25,37 +25,7 @@ class controllerAgen extends Controller
 
 	}
 
-	public function profil($id)
-	{
-		$prof= User::where('id',$id);
-		return view('profilAgen', compact('prof'));
-
-	}
-
-public function updateProfil(Request $request, $id){ 
-
-		$prof=User::find($id);
-
-			$prof = ([
-				'name' =>   $request->name,
-            'email' =>   $request->email,
-            'alamat' =>   $request->alamat,
-            'kecamatan' =>   $request->kecamatan,
-            'kabupaten' =>   $request->kabupaten,
-            'provinsi' =>   $request->provinsi,
-            'noTelepon' =>   $request->noTelepon,
-            'rekening' =>   $request->rekening,
-            'username' =>   $request->username,
-            'password' =>  $request->password,
-            'sebagai' =>   $request->sebagai,
-				]);
- 			$prof->save(); 
- 
-			return redirect()->back();
-		 
-
-	}
-
+	
 	public function view($id)
 	{ 
 		$tampils= ikan::where('idAgen',$id)->get() ;
@@ -69,6 +39,14 @@ public function updateProfil(Request $request, $id){
 		return view ('notifikasiAgen',compact('tampils'));
 	}
 
+	public function pengusaha(Request $request)
+	{
+
+		$tampil= User::where('sebagai',2)->get();
+		
+		return view('daftarPengusaha',compact('tampil'));
+	}
+
 
 	public function penawaran()
 	{
@@ -80,6 +58,26 @@ public function updateProfil(Request $request, $id){
 	{
 		return view('home');
 
+	}
+	public function profil($id)
+	{ 
+		return view('profilAgen', compact(Auth::user()->id));
+
+	}
+
+	public function updateProfil(Request $request){ 
+
+		$prof=Auth::user();
+		$prof->name= $request->name;
+		$prof->email= $request->email;
+		$prof->kecamatan= $request->kecamatan;
+		$prof->kabupaten= $request->kabupaten;
+		$prof->provinsi= $request->provinsi;
+		$prof->noTelepon= $request->noTelepon;
+		$prof->rekening= $request->rekening;
+  		
+  		$prof->save(); 
+  		return view('profilAgen', compact(Auth::user()->id)); 
 	}
 
 	public function insertPenawaran(Request $request)
